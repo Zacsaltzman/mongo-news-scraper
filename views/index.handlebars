@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1> Article List: </h1>
+      <ul>
+      {{#each articles}}
+      <li>
+        <p>{{this.title}}, {{this.link}}, {{this.summary}}</p>
+        <button class="btn btn-primary comment-button" data-id="{{this._id}}">Comment</button>
+      </li>
+      {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{#each articles}}
+<div id="modal_{{this._id}}" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modalClose" data-id="{{this._id}}"><span class="close">&times;</span></button>
+        <h4 class="modal-title blackText" id="sentModalLabel">{{this.title}}</h4>
+      </div>
+      <div class="modal-body">
+        <h2 class="blackText">Write a comment:</h2>
+        <form action="/articles/{{this.id}}" method="POST">
+          <h3>Title:</h3>
+          <input type="text" id="ca" name="title" class="center-block" />
+          <h3>Comment:</h3>
+          <input type="text" id="ca" name="body" class="center-block" />
+          <button type="submit" class="center-block">Submit Comment</button>
+        </form>
+        <br>
+        <h2>Comments:</h2>
+        <ul>
+          {{#each comments}}
+            <li>{{this.title}}: {{this.body}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
