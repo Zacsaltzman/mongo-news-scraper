@@ -35,7 +35,7 @@ app.use(express.static("public"));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://127.0.0.1/mongoNewsScraper", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
