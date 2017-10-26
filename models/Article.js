@@ -23,10 +23,14 @@ var ArticleSchema = new Schema({
   summary: {
     type: String
   },
-  comments: {
+  saved: {
+    type: Boolean,
+    default: false
+  },
+  comments: [{
     type: Schema.Types.ObjectId,
     ref: "Comment"
-  }
+  }]
 });
 
 // This creates our model from the above schema, using mongoose's model method
