@@ -21,14 +21,18 @@ $(document).on("click", ".comment-button", showModal);
 
 $(document).on("click", "#savecomment", function() {
   // Grab the id associated with the article from the submit button
+  console.log("click firing");
   var thisId = $(this).attr("data-id");
+  console.log("pre-comment-body");
+  var commentBody = $("#bodyinput-"+$(this).attr("data-id")).val();
+  console.log(commentBody);
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
     data: {
-      body: $("#bodyinput").val()
+      body: commentBody
     }
   })
     // With that done
@@ -39,7 +43,6 @@ $(document).on("click", "#savecomment", function() {
       location.reload();
     });
     
-  $("#bodyinput").val("");
 });
 
 $(document).on("click", "#deletecomment", function() {
